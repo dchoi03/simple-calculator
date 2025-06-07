@@ -4,30 +4,56 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [displayValue, setDisplayValue] = useState('')
+  const [inputValue, setInputValue] = useState('')
+  const [operator, setOperator] = useState(null)
+  const [previousValue, setPreviousValue] = useState(null)
+
+  const handleClear = () => {
+    setDisplayValue('')
+    setInputValue('')
+  }
+
+  const handleInputChange = (event) => {
+    const value = event.target.value
+    setInputValue(value)
+    // Here you can add logic to handle the input value, e.g., validation or calculation
+
+  }
 
   return (
     <>
+      <p>{displayValue}</p>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <button onClick={() => setDisplayValue(displayValue + '(')}>(</button>
+        <button onClick={() => setDisplayValue(displayValue + ')')}>)</button>
+        <button onClick={() => setDisplayValue(displayValue + '%')}>%</button>
+        <button onClick={handleClear}>AC</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div>
+        <button onClick={() => setDisplayValue(displayValue + '7')}>7</button>
+        <button onClick={() => setDisplayValue(displayValue + '8')}>8</button>
+        <button onClick={() => setDisplayValue(displayValue + '9')}>9</button>
+        <button onClick={() => setDisplayValue(displayValue + '÷')}>÷</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div>
+        <button onClick={() => setDisplayValue(displayValue + '4')}>4</button>
+        <button onClick={() => setDisplayValue(displayValue + '5')}>5</button>
+        <button onClick={() => setDisplayValue(displayValue + '6')}>6</button>
+        <button onClick={() => setDisplayValue(displayValue + '×')}>×</button>
+      </div>
+      <div>
+        <button onClick={() => setDisplayValue(displayValue + '1')}>1</button>
+        <button onClick={() => setDisplayValue(displayValue + '2')}>2</button>
+        <button onClick={() => setDisplayValue(displayValue + '3')}>3</button>      
+        <button onClick={() => setDisplayValue(displayValue + '-')}>-</button>      
+      </div>
+      <div>
+        <button onClick={() => setDisplayValue(displayValue + '0')}>0</button>
+        <button onClick={() => setDisplayValue(displayValue + '.')}>.</button>
+        <button onClick={() => setDisplayValue(displayValue + '=')}>=</button>      
+        <button onClick={() => setDisplayValue(displayValue + '+')}>+</button>      
+      </div>  
     </>
   )
 }
