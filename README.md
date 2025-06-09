@@ -1,12 +1,49 @@
-# React + Vite
+## 🫮 React Calculator App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, responsive calculator built with **React**, styled using **Tailwind CSS**, and capable of evaluating basic math expressions — including chained calculations like `1 + 2 = 3 → + 4 = 7`.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ✨ Features
 
-## Expanding the ESLint configuration
+* Basic math operations: `+`, `-`, `×`, `÷`, `%`
+* Supports decimal and parentheses `()`
+* Expression chaining: continue calculations after `=`
+* Styled with Tailwind CSS for a clean, responsive design
+* Responsive button grid with hover effects
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+### 📦 Technologies Used
+
+* [React](https://reactjs.org/) (with Vite)
+* [Tailwind CSS](https://tailwindcss.com/)
+* JavaScript `eval()` for expression evaluation (⚠️ educational use only)
+
+---
+
+### 💠 Installation & Setup
+
+1. **Clone the repo**
+
+   ```bash
+   git clone https://github.com/your-username/react-calculator.git
+   cd react-calculator
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the dev server**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Visit the app**
+   Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
