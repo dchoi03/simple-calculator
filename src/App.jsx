@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -47,36 +45,37 @@ function App() {
   }
 
   return (
-    <div className="calculator">
-      <div className="display">
-        <p>{displayValue || 0}</p>
+    <div className="min-h-screen min-w-screen flex flex-col items-center justify-center bg-gray-100">
+      <div className='w-80 p-6 bg-gray-500 shadow-lg rounded-lg'>
+        <div className="bg-gray-800 text-amber-50 text-right text-3xl px-4 py-3 mb-4 rounded-lg font-mono">
+          {displayValue || 0}
+        </div>
+        <div className="grid grid-cols-4 gap-5 text-3xl font-bold text-white">
+          <button onClick={handleClear} className=' btn'>AC</button>
+          <button onClick={() => handleInputChange('(')} className=' btn '>(</button>
+          <button onClick={() => handleInputChange(')')} className=' btn '>)</button>
+          <button onClick={() => handleInputChange('%')} className=' btn '>%</button>
+
+          {['7','8','9'].map(n => (
+            <button key={n} onClick={() => handleInputChange(n)} className=' btn '>{n}</button>
+          ))}
+          <button onClick={() => handleInputChange('÷')} className=' btn ' >÷</button>
+
+          {['4','5','6'].map(n => (
+            <button key={n} onClick={() => handleInputChange(n)} className=' btn '>{n}</button>
+          ))}
+          <button onClick={() => handleInputChange('×')} className=' btn ' >×</button>
+
+          {['1','2','3'].map(n => (
+            <button key={n} onClick={() => handleInputChange(n)} className=' btn '>{n}</button>
+          ))}
+          <button onClick={() => handleInputChange('-')} className=' btn '>-</button>
+          <button onClick={() => handleInputChange('0')} className=' btn '>0</button>
+          <button onClick={() => handleInputChange('.')} className=' btn '>.</button>
+          <button onClick={() => handleInputChange('+')} className=' btn '>+</button>
+          <button className="equals btn" onClick={() => handleInputChange('=')}>=</button>
+        </div>
       </div>
-      <div className="buttons">
-        <button onClick={handleClear}>AC</button>
-        <button onClick={() => handleInputChange('(')}>(</button>
-        <button onClick={() => handleInputChange(')')}>)</button>
-        <button onClick={() => handleInputChange('%')}>%</button>
-
-        {['7','8','9'].map(n => (
-          <button key={n} onClick={() => handleInputChange(n)}>{n}</button>
-        ))}
-        <button onClick={() => handleInputChange('÷')}>÷</button>
-
-        {['4','5','6'].map(n => (
-          <button key={n} onClick={() => handleInputChange(n)}>{n}</button>
-        ))}
-        <button onClick={() => handleInputChange('×')}>×</button>
-
-        {['1','2','3'].map(n => (
-          <button key={n} onClick={() => handleInputChange(n)}>{n}</button>
-        ))}
-        <button onClick={() => handleInputChange('-')}>-</button>
-        <button onClick={() => handleInputChange('0')}>0</button>
-        <button onClick={() => handleInputChange('.')}>.</button>
-        <button onClick={() => handleInputChange('+')}>+</button>
-        <button className="equals" onClick={() => handleInputChange('=')}>=</button>
-      </div>
-
     </div>
   )
 }
