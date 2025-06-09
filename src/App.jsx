@@ -5,53 +5,37 @@ import './App.css'
 
 function App() {
   const [displayValue, setDisplayValue] = useState('');
-  const [currentValue, setCurrentValue] = useState('');
-  const [previousValue, setPreviousValue] = useState('');
-  const [operator, setOperator] = useState(null);
+  const [expression, setExpression] = useState('');
 
   const handleClear = () => {
     setDisplayValue('');
-    setCurrentValue('');
-    setPreviousValue('');
-    setOperator(null);
+    setExpression('');
   }
 
   const handleInputChange = (value) => {
     if (value === '=') {
       calculateResult();
-    } else if (/[\d.]/.test(value)) {
-      const newVal = currentValue + value;
-      setCurrentValue(newVal);
-      setDisplayValue(newVal);
+    } else {
+      const newExp = expression + value;
+      setExpression(newExp);
+      setDisplayValue(newExp);
     }
-  }
-
-  const handleOperatorChange = (op) => {
-    if (!currentValue) return;
-    if (operator) calculateResult();
-    setOperator(op);
-    setPreviousValue(currentValue);
-    setCurrentValue('');
   }
 
   const calculateResult = () => {
-    if (!previousValue || !operator || !currentValue) return;
+    if (!expression) return;
 
-    const prev = parseFloat(previousValue);
-    const curr = parseFloat(currentValue);
-    let result;
-    switch (operator) {
-      case '+': result = prev + curr; break;
-      case '-': result = prev - curr; break;
-      case '×': result = prev * curr; break;
-      case '÷': result = prev / curr; break;
-      default: return;
+    let exp = expression
+      .replace(/×/g, '*')
+      .replace(/÷/g, '/')
+      .replace(/%/g, '/100');
+    try {
+      const result = eval(exp);
+      setDisplayValue(String(result));
+      setExpression('');
+    } catch (error) {
+      setDisplayValue('Error');
     }
-    const resultStr = String(result);
-    setDisplayValue(resultStr);
-    setCurrentValue(resultStr);
-    setPreviousValue('');
-    setOperator(null);
   }
 
   return (
@@ -68,22 +52,22 @@ function App() {
         {['7','8','9'].map(n => (
           <button key={n} onClick={() => handleInputChange(n)}>{n}</button>
         ))}
-        <button onClick={() => handleOperatorChange('÷')}>÷</button>
-        
+        <button onClick={() => handleInputChange('÷')}>÷</button>
+
         {['4','5','6'].map(n => (
           <button key={n} onClick={() => handleInputChange(n)}>{n}</button>
         ))}
-        <button onClick={() => handleOperatorChange('×')}>×</button>
+        <button onClick={() => handleInputChange('×')}>×</button>
 
         {['1','2','3'].map(n => (
           <button key={n} onClick={() => handleInputChange(n)}>{n}</button>
         ))}
-        <button onClick={() => handleOperatorChange('-')}>-</button>
+        <button onClick={() => handleInputChange('-')}>-</button>
         <button onClick={() => handleInputChange('0')}>0</button>
         <button onClick={() => handleInputChange('.')}>.</button>
-        <button onClick={() => handleOperatorChange('+')}>+</button>
+        <button onClick={() => handleInputChange('+')}>+</button>
         <button className="equals" onClick={() => handleInputChange('=')}>=</button>
-      </div>  
+      </div>
 
     </div>
   )
