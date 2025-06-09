@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-   const [displayValue, setDisplayValue] = useState('');
+  const [displayValue, setDisplayValue] = useState('');
   const [currentValue, setCurrentValue] = useState('');
   const [previousValue, setPreviousValue] = useState('');
   const [operator, setOperator] = useState(null);
@@ -55,39 +55,37 @@ function App() {
   }
 
   return (
-    <>
-      <p>{displayValue}</p>
-      <div>
-        {/* <button onClick={() => handleInputChange('(')}>(</button>
-        <button onClick={() => handleInputChange(')')}>)</button>
-        <button onClick={() => handleInputChange('%')}>%</button> */}
+    <div className="calculator">
+      <div className="display">
+        <p>{displayValue || 0}</p>
+      </div>
+      <div className="buttons">
         <button onClick={handleClear}>AC</button>
-      </div>
-      <div>
-        <button onClick={() => handleInputChange('7')}>7</button>
-        <button onClick={() => handleInputChange('8')}>8</button>
-        <button onClick={() => handleInputChange('9')}>9</button>
+        <button onClick={() => handleInputChange('(')}>(</button>
+        <button onClick={() => handleInputChange(')')}>)</button>
+        <button onClick={() => handleInputChange('%')}>%</button>
+
+        {['7','8','9'].map(n => (
+          <button key={n} onClick={() => handleInputChange(n)}>{n}</button>
+        ))}
         <button onClick={() => handleOperatorChange('÷')}>÷</button>
-      </div>
-      <div>
-        <button onClick={() => handleInputChange('4')}>4</button>
-        <button onClick={() => handleInputChange('5')}>5</button>
-        <button onClick={() => handleInputChange('6')}>6</button>
+        
+        {['4','5','6'].map(n => (
+          <button key={n} onClick={() => handleInputChange(n)}>{n}</button>
+        ))}
         <button onClick={() => handleOperatorChange('×')}>×</button>
-      </div>
-      <div>
-        <button onClick={() => handleInputChange('1')}>1</button>
-        <button onClick={() => handleInputChange('2')}>2</button>
-        <button onClick={() => handleInputChange('3')}>3</button>
+
+        {['1','2','3'].map(n => (
+          <button key={n} onClick={() => handleInputChange(n)}>{n}</button>
+        ))}
         <button onClick={() => handleOperatorChange('-')}>-</button>
-      </div>
-      <div>
         <button onClick={() => handleInputChange('0')}>0</button>
         <button onClick={() => handleInputChange('.')}>.</button>
-        <button onClick={() => handleInputChange('=')}>=</button>
         <button onClick={() => handleOperatorChange('+')}>+</button>
-      </div>
-    </>
+        <button className="equals" onClick={() => handleInputChange('=')}>=</button>
+      </div>  
+
+    </div>
   )
 }
 
