@@ -6,6 +6,7 @@ import './App.css'
 function App() {
   const [displayValue, setDisplayValue] = useState('');
   const [expression, setExpression] = useState('');
+  const [justCalculated, setJustCalculated] = useState(false);
 
   const handleClear = () => {
     setDisplayValue('');
@@ -15,10 +16,16 @@ function App() {
   const handleInputChange = (value) => {
     if (value === '=') {
       calculateResult();
+    } else if (justCalculated && /[+\-×÷]/.test(value)) {
+      const newExp = displayValue + value;
+      setExpression(newExp);
+      setDisplayValue(newExp);
+      setJustCalculated(false);
     } else {
       const newExp = expression + value;
       setExpression(newExp);
       setDisplayValue(newExp);
+      setJustCalculated(false);
     }
   }
 
@@ -32,6 +39,7 @@ function App() {
     try {
       const result = eval(exp);
       setDisplayValue(String(result));
+      setJustCalculated(true);
       setExpression('');
     } catch (error) {
       setDisplayValue('Error');
